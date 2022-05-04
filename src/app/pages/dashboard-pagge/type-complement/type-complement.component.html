@@ -1,0 +1,123 @@
+<div class="row">
+  <div class="col-8">
+      <div class="card">
+          <div class="card-body">
+
+              <h4 class="card-title">Les Types de compléments</h4>
+              <p class="card-title-desc">DataTables has most features enabled by
+                  default, so all you need to do to use it with your own tables is to call
+                  the construction function: <code>$().DataTable();</code>.
+              </p>
+              <div class="col-1">
+                <select (change)="onTableSizeChange($event)" class="form-select ">
+                    <option *ngFor="let size of tableSizes">{{size}}</option>
+                </select>
+              </div>
+
+              <table  class="table table-bordered  mt-2" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                  <thead>
+                  <tr>
+                      <th>Image</th>
+                      <th>Nom</th>
+                      <th>Nombre de compléments</th>
+                      <th>Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  <tr *ngFor="let type of types | paginate:{
+                    itemsPerPage:tableSize,
+                    currentPage:page,
+                    totalItems:count
+                  }; let i = index">
+                      <td>{{type.id}}</td>
+                      <td>{{type.name}}</td>
+                      <td>{{type.complements?.length  }}</td>
+
+                      <td>
+                        <button type="button"  (click)=" updateTypeLoad(type)" class="btn btn-info me-1">modifier</button>
+                        <button type="button" (click)="deleteType(type)" class="btn btn-danger ">supprimer</button>
+                      </td>
+
+                  </tr>
+                  </tbody>
+              </table>
+              <div>
+                <pagination-controls
+                    previousLabel="Prev"
+                    nextLabel = "Next"
+                    (pageChange) = "onTableDataChange($event)"></pagination-controls>
+              </div>
+
+
+          </div>
+      </div>
+  </div> <!-- end col -->
+
+  <div class ="col-4">
+    <div class="card">
+      <div class="card-body">
+          <h4 class="card-title">Ajouter type Complement</h4>
+              <form  *ngIf="! typeToUpdate" #addTypeFrom="ngForm" >
+                <div *ngIf="valideReq" class="alert alert-danger" role="alert">
+                  Le champs est obligatoire
+                </div>
+                  <div class="mb-3">
+                      <label class="form-label">Nom</label>
+                      <input type="text" class="form-control"   name="nom"  [(ngModel)]="nom" required>
+                      <input *ngIf="typeToUpdate" type="text" class="form-control"   name="nom" value="{{typeToUpdate.name}}"  [(ngModel)]="nom" required>
+                  </div>
+
+                  <div class="mb-3">
+                      <label class="form-label">Image</label>
+                      <input type="file" class="form-control"   name="file" [(ngModel)]="file"   (change)="onChangeFile($event)">
+                  </div>
+                  <div>
+                      <div>
+
+                          <button  type="submit" [disabled]="! addTypeFrom.form.valid"  (click)="ajouterType()" name="btn_save" class="btn btn-primary waves-effect waves-light me-1">
+                              Ajouter
+                          </button>
+
+
+                          <button type="button" (click)="annuler()" class="btn btn-secondary waves-effect">
+                              Annuler
+                          </button>
+                      </div>
+                  </div>
+              </form>
+
+
+              <form #editTypeFrom="ngForm" *ngIf="typeToUpdate" >
+                <div *ngIf="valideReq" class="alert alert-danger" role="alert">
+                  Le champs est obligatoire
+                </div>
+                  <div class="mb-3">
+                      <label class="form-label">Nom</label>
+                      <input  type="text" class="form-control"   name="nom" value="{{typeToUpdate.name}}"  [(ngModel)]="nom" required>
+                  </div>
+
+                  <div class="mb-3">
+                      <label class="form-label">Image</label>
+                      <input type="file" class="form-control"  id="file" [(ngModel)]="file"   (change)="onChangeFile($event)">
+                  </div>
+                  <div>
+                      <div>
+
+                          <button  type="submit" [disabled]="! editTypeFrom.form.valid"  (click)="updateType(nom,typeToUpdate)"  class="btn btn-warning waves-effect waves-light me-1">
+                              Modifier
+                          </button>
+
+
+                          <button type="button" (click)="annuler()" class="btn btn-secondary waves-effect">
+                              Annuler
+                          </button>
+                      </div>
+                  </div>
+              </form>
+
+      </div>
+  </div>
+
+  </div>
+</div> <!-- end row -->

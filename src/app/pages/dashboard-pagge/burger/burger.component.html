@@ -1,0 +1,110 @@
+<div class="row">
+  <div class="col-8">
+      <div class="card">
+          <div class="card-body">
+
+              <h4 class="card-title">Les Types de compléments</h4>
+              <p class="card-title-desc">DataTables has most features enabled by
+                  default, so all you need to do to use it with your own tables is to call
+                  the construction function:.
+              </p>
+
+              <table datatable id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                  <thead>
+                  <tr>
+                      <th>code</th>
+                      <th>Nom</th>
+                      <th>description</th>
+                      <th>prix</th>
+                      <th>status</th>
+                      <th>Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  <tr *ngFor="let burger of burgers">
+                      <td>{{burger.code}}</td>
+                      <td>{{burger.name}}</td>
+                      <td>{{burger.description}}</td>
+                      <td>{{burger.price}}</td>
+                      <td>active</td>
+
+                      <td>
+                        <button (click)="editBurger(burger)" class="btn btn-info me-1">modifier</button>
+                        <button (click)="deleteBurger(burger)" class="btn btn-danger " >supprimer</button>
+                      </td>
+
+                  </tr>
+                  </tbody>
+              </table>
+
+          </div>
+      </div>
+  </div> <!-- end col -->
+
+  <div class ="col-4">
+    <div class="card">
+      <div class="card-body">
+          <h4 class="card-title">Ajouter Burger</h4>
+              <form class="custom-validation" #addBurgerForm="ngForm" >
+                  <div class="mb-3">
+                      <label class="form-label">Nom</label>
+                      <input type="text" class="form-control"  name="nom" [(ngModel)]="nom" required >
+                      <input hidden type="text" name="code">
+                  </div>
+
+                  <div class="mb-3">
+                      <label class="form-label">Prix</label>
+                      <input type="number" class="form-control" required name="prix" [(ngModel)]="prix" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">Temps de cuisson</label>
+                    <input type="time" class="form-control" required name="time" [(ngModel)]="time" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label" for="productdesc">Description</label>
+                    <textarea class="form-control" name="description" rows="4" [(ngModel)]="description" required ></textarea>
+                  </div>
+
+                  <div class="mb-3">
+                     <label class="form-label">Etat</label>
+                      <select class="form-select" name="etat" (change)="onSelectEtat($event)" [(ngModel)]="etat" required>
+                              <option value="true">Active</option>
+                              <option value="false">Archiver</option>
+                      </select>
+
+                  </div>
+
+
+
+                </form>
+
+                <div class="mb-3">
+                  <label class="form-label">Image</label>
+                  <input type="file" class="form-control" id="file" [(ngModel)]="file"   (change)="onChangeFile($event)" name="image"/>
+                </div>
+                  <div>
+                      <div>
+
+                          <button *ngIf="! isEdit" type="button" [disabled]="! addBurgerForm.form.valid" (click)="addBurger()"  class="btn btn-primary waves-effect waves-light me-1">
+                              Ajouter
+                          </button>
+                          <button *ngIf="isEdit"  type="button" [disabled]="! addBurgerForm.form.valid" (click)="updateBurger()"  class="btn btn-warning waves-effect waves-light me-1">
+                              Modifier
+                          </button>
+
+
+                          <button type="button" (click)="restForm()" class="btn btn-secondary waves-effect">
+                              Annuler
+                          </button>
+                      </div>
+                  </div>
+
+
+      </div>
+  </div>
+
+  </div>
+</div> <!-- end row -->
