@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Commandes } from '../models/Commandes';
 import { StorageService } from './storage/storage.service';
-const APIURL="http://localhost:5000/api";
+const APIURL="https://urchin-app-3onl3.ondigitalocean.app/api";
 @Injectable({
   providedIn: 'root'
 })

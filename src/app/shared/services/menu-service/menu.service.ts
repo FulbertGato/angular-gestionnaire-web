@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Menus } from '../../models/Menu';
 import { AuthService } from '../auth-service/auth.service';
-const APIURL="http://localhost:5000/api/menu";
+const APIURL="https://urchin-app-3onl3.ondigitalocean.app/api/menu";
 @Injectable({
   providedIn: 'root'
 })

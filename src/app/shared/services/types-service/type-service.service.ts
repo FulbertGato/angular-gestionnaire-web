@@ -6,7 +6,7 @@ import { TypesComplements } from '../../models/TypesComplements';
 import { AuthService } from '../auth-service/auth.service';
 
 
-const APIURL="http://localhost:5000/api/type/complement";
+const APIURL="https://urchin-app-3onl3.ondigitalocean.app/api/type/complement";
 
 @Injectable({
   providedIn: 'root'

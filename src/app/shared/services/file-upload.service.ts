@@ -11,7 +11,7 @@ export class FileUploadService {
 
 
   // API url
-  baseApiUrl = "http://localhost:5000/api/media/upload"
+  baseApiUrl = "https://urchin-app-3onl3.ondigitalocean.app/api/media/upload"
 
   constructor(private http:HttpClient) { }
 
@@ -30,5 +30,5 @@ export class FileUploadService {
       return this.http.post(this.baseApiUrl, formData,{'headers': {'Content-Type': 'multipart/form-data'}});
   }
 
-  
+
 }
