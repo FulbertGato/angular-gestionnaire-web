@@ -11,4 +11,5 @@ export interface Menus {
   cookingTime : string,
   burger?:Burgers,
   complements:Complements[],
+  image? : string
 }

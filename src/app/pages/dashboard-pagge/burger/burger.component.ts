@@ -41,14 +41,14 @@ export class BurgerComponent implements OnInit {
   addBurger() {
 
       if (this.nom != "" && this.nom != undefined && this.description != "" && this.description != undefined && this.prix != null && this.etat != null, this.time != undefined, this.time != "") {
-       // this.sendImageToServer(this.image);
+
         let burger: any= {
           "time": this.time,
           "name": this.nom,
           "price": this.prix,
           "description": this.description,
           "status": this.etat,
-          "image": "assets/img/food/tamago.png"
+          "image": "static/assets/food/3.JPG"
         }
         //console.log(burger);
         this.burgerService.addBurger(burger).subscribe(
@@ -136,35 +136,25 @@ export class BurgerComponent implements OnInit {
 
     this.loading = !this.loading;
 
-        this.fileUploadService.upload(this.image).subscribe(
+       /* this.fileUploadService.upload(this.image).subscribe(
           (data: any) => {
 
             this.shortLink = data;
 
 
           }
-        );
+        );*/
     }
 
     onChangeFile(event: any) {
-      //this.file = event.target.files[0];
-     // console.log(event.target.files[0]);
+
       this.image = event.target.files[0];
       console.log(this.image);
       console.log(this.sendImageToServer(this.image));
-      //console.log(this.toBase64(this.image));
-     // this.convertData = this.toBase64(this.image);
-      //this.file = event.target.files[0];
-      //get the file by id
+
 
     }
 
-    toBase64 (file: File) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-          console.log(reader.result);
-      };
-    };
+
 
 }

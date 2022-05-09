@@ -19,6 +19,8 @@ import { FormsModule } from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { NgToastModule } from 'ng-angular-popup';
 import { EditMenuComponent } from './edit-menu/edit-menu.component';
+import { ClientComponent } from './client/client.component';
+import { DetailCommandeComponent } from './detail-commande/detail-commande.component';
 @NgModule({
   declarations: [
     DashboardPaggeComponent,
@@ -34,7 +36,9 @@ import { EditMenuComponent } from './edit-menu/edit-menu.component';
     CommandeComponent,
     PaiementComponent,
     UserComponent,
-    EditMenuComponent
+    EditMenuComponent,
+    ClientComponent,
+    DetailCommandeComponent
 
   ],
   imports: [

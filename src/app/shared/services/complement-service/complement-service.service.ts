@@ -2,18 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { filter, map, Observable, of, Subject } from 'rxjs';
 import { Complements } from '../../models/Complements';
+import { AuthService } from '../auth-service/auth.service';
 const APIURL="http://localhost:5000/api/complement";
 @Injectable({
   providedIn: 'root'
 })
 export class ComplementServiceService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private authService:AuthService) { }
 
 
   getComplements():Observable<Complements[]>{
 
-    const body = { 'token' : 'Angular PUT Request Example' };
+    const body = { 'token' : this.authService.getUserStorage()?.matricule };
     let data =  this.http.get<Complements[]>(APIURL,{'headers':{'Content-Type':'application/json'}});
     return data
 
@@ -21,7 +22,7 @@ export class ComplementServiceService {
 
   getComplement(id:number):Observable<Complements>{
 
-    const body = { 'token' : 'Angular PUT Request Example' };
+    const body = { 'token' : this.authService.getUserStorage()?.matricule };
     let data =  this.http.get<Complements>(APIURL+"/"+id,{'headers':{'Content-Type':'application/json'}});
     return data
 
@@ -30,7 +31,7 @@ export class ComplementServiceService {
   addComplement(complement:Complements):Observable<Complements>{
 
     const body = {
-      "token": "test",
+      "token": this.authService.getUserStorage()?.matricule,
       "complement": complement
     }
     let data =  this.http.post<Complements>(APIURL,body,{'headers':{'Content-Type':'application/json'}});
@@ -41,7 +42,7 @@ export class ComplementServiceService {
   updateComplement(complement:Complements):Observable<Complements>{
 
     const body = {
-      "token": "test",
+      "token": this.authService.getUserStorage()?.matricule,
       "complement": complement
     }
     let data =  this.http.put<Complements>(APIURL,body,{'headers':{'Content-Type':'application/json'}});
@@ -51,7 +52,7 @@ export class ComplementServiceService {
 
   deleteComplement(complement:Complements):Observable<Complements>{
 
-    let  token = "59000"
+    let  token = this.authService.getUserStorage()?.matricule
     let data =  this.http.delete<Complements>(APIURL+'/'+token+'/'+complement.id,{'headers':{'Content-Type':'application/json'}});
     return data
 

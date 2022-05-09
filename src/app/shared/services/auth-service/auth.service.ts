@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { get } from 'jquery';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Clients } from '../../models/Clients';
 import { Gestionnaires } from '../../models/Gestionnaire';
 import { StorageService } from '../storage/storage.service';
 const APIURL="http://localhost:5000/api/auth";
@@ -66,6 +67,18 @@ export class AuthService {
     let user = this.getUserStorage();
     let token = user?.matricule
     return this.http.get<Gestionnaires[]>(APIURL+'/gestionnaires/'+token);
+  }
+
+  getAllclients():Observable<Clients[]>{
+    let user = this.getUserStorage();
+    let token = user?.matricule
+    return this.http.get<Clients[]>(APIURL+'/clients/'+token);
+  }
+
+  deleteClient(id:any):Observable<Clients>{
+    let user = this.getUserStorage();
+    let token = user?.matricule
+    return this.http.delete<Clients>(APIURL+'/clients/'+token+'/'+id);
   }
 
 

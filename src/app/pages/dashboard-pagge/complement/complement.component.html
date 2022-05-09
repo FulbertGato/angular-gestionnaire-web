@@ -37,7 +37,9 @@
                       <td>{{complement.name}}</td>
                       <td>{{complement.description}}</td>
                       <td>{{complement.price}}</td>
-                      <td>active</td>
+
+                        <td *ngIf="complement.status">active</td>
+                        <td *ngIf="! complement.status">Archiver</td>
 
                       <td>
                          <button (click)="editComplement(complement)" class="btn btn-info me-1">modifier</button>

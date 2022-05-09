@@ -2,17 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Burgers } from '../../models/Burgers';
+import { AuthService } from '../auth-service/auth.service';
 const APIURL="http://localhost:5000/api/burger";
 @Injectable({
   providedIn: 'root'
 })
 export class BurgerService {
 
-  constructor(private http:HttpClient) {}
+  constructor(private http:HttpClient,private authService:AuthService) {}
 
   getBurgers():Observable<Burgers[]>{
 
-    const body = { 'token' : '1234' };
+    const body = { 'token' :this.authService.getUserStorage()?.matricule };
     let data =  this.http.get<Burgers[]>(APIURL,{'headers':{'Content-Type':'application/json'}});
 
     return data
@@ -20,16 +21,15 @@ export class BurgerService {
   }
 
   getBurger(id:number):Observable<Burgers>{
-    const body = { 'token' : '1234' };
+    const body = { 'token' : this.authService.getUserStorage()?.matricule };
     let data =  this.http.get<Burgers>(APIURL+"/"+id,{'headers':{'Content-Type':'application/json'}});
 
     return data
   }
 
   addBurger(burger:Burgers):Observable<Burgers>{
-    //const body = { 'token' : '1234', 'burger':burger };
     const body = {
-      "token": "74588",
+      "token": this.authService.getUserStorage()?.matricule,
       "burger": burger
     };
 
@@ -38,14 +38,14 @@ export class BurgerService {
   }
 
   updateBurger(burger:Burgers):Observable<Burgers>{
-    const body = { 'token' : '1234', 'burger':burger };
+    const body = { 'token' : this.authService.getUserStorage()?.matricule, 'burger':burger };
     let data =  this.http.put<Burgers>(APIURL,body,{'headers':{'Content-Type':'application/json'}});
 
     return data
   }
 
   deleteBurger(burger:Burgers):Observable<Burgers>{
-    let token = '1234';
+    let token = this.authService.getUserStorage()?.matricule;
     let data =  this.http.delete<Burgers>(APIURL+"/"+token+"/"+burger.id,{'headers':{'Content-Type':'application/json'}});
     return data
   }

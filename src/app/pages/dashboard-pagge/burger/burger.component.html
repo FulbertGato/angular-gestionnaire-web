@@ -27,7 +27,8 @@
                       <td>{{burger.name}}</td>
                       <td>{{burger.description}}</td>
                       <td>{{burger.price}}</td>
-                      <td>active</td>
+                      <td *ngIf="burger.status">active</td>
+                        <td *ngIf="! burger.status">Archiver</td>
 
                       <td>
                         <button (click)="editBurger(burger)" class="btn btn-info me-1">modifier</button>
