@@ -1,6 +1,6 @@
 {
   "/api/": {
-    "target": "http://localhost:5000",
+    "target": "https://urchin-app-3onl3.ondigitalocean.app/",
     "secure": false,
     "changeOrigin": true
   }

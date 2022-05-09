@@ -7,6 +7,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

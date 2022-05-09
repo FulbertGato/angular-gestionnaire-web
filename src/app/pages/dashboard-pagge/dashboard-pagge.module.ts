@@ -21,6 +21,7 @@ import { NgToastModule } from 'ng-angular-popup';
 import { EditMenuComponent } from './edit-menu/edit-menu.component';
 import { ClientComponent } from './client/client.component';
 import { DetailCommandeComponent } from './detail-commande/detail-commande.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 @NgModule({
   declarations: [
     DashboardPaggeComponent,
@@ -46,7 +47,8 @@ import { DetailCommandeComponent } from './detail-commande/detail-commande.compo
     DashboardPaggeRoutingModule,
     FormsModule,
     NgxPaginationModule,
-    NgToastModule
+    NgToastModule,
+    NgMultiSelectDropDownModule
   ]
 })
 export class DashboardPaggeModule { }

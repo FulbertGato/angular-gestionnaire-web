@@ -156,5 +156,16 @@ export class BurgerComponent implements OnInit {
     }
 
 
+    onTableDataChange (event: any) {
+      this.page = event;
+      this.loadBurgers();
+
+    }
+
+    onTableSizeChange ( event : any ) : void {
+      this.tableSize = event.target.value ;
+      this.page = 1 ;
+      this.loadBurgers();
+    }
 
 }
