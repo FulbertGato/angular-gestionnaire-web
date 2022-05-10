@@ -48,7 +48,7 @@ export class BurgerComponent implements OnInit {
           "price": this.prix,
           "description": this.description,
           "status": this.etat,
-          "image": "static/assets/food/3.JPG"
+          "image": "static/assets/food/3.jpg"
         }
         //console.log(burger);
         this.burgerService.addBurger(burger).subscribe(
@@ -140,8 +140,6 @@ export class BurgerComponent implements OnInit {
           (data: any) => {
 
             this.shortLink = data;
-
-
           }
         );*/
     }

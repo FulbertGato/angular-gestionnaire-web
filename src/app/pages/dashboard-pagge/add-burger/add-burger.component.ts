@@ -89,7 +89,7 @@ addMenu(){
         "status" : true,
         "burgerId" : this.burger?.id,
         "complementsId": complementsId,
-        "image": "static/assets/food/5.JPG",
+        "image": "static/assets/food/6.jpg",
     }
     this.menuService.createMenu(menu).subscribe(
       data => {
